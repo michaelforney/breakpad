@@ -52,6 +52,11 @@ deps = {
   "src/src/third_party/lss":
     "https://chromium.googlesource.com/linux-syscall-support/" +
       "@f70e2f1641e280e777edfdad7f73a2cfa38139c7",
+
+  # getcontext fallback implementation.
+  "src/src/third_party/libucontext":
+    "https://github.com/AdelieLinux/libucontext.git" +
+      "@aaeb73ea701388e55b7640e32509a5f6a57f6350",
 }
 
 hooks = [

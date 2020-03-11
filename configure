@@ -642,6 +642,9 @@ DISABLE_TOOLS_FALSE
 DISABLE_TOOLS_TRUE
 DISABLE_PROCESSOR_FALSE
 DISABLE_PROCESSOR_TRUE
+HAVE_GETCONTEXT_FALSE
+HAVE_GETCONTEXT_TRUE
+LIBUCONTEXT_ARCH
 X86_HOST_FALSE
 X86_HOST_TRUE
 ANDROID_HOST_FALSE
@@ -7538,6 +7541,45 @@ else
 fi
 
 
+ac_fn_c_check_func "$LINENO" "getcontext" "ac_cv_func_getcontext"
+if test "x$ac_cv_func_getcontext" = xyes; then :
+
+else
+  case $host_cpu in
+                 arm*)
+                   LIBUCONTEXT_ARCH=arm
+                   ;;
+                 i?86)
+                   LIBUCONTEXT_ARCH=x86
+                   ;;
+                 powerpc64*|ppc64*)
+                   LIBUCONTEXT_ARCH=ppc64
+                   ;;
+                 powerpc*|ppc*)
+                   LIBUCONTEXT_ARCH=ppc
+                   ;;
+                 s390x)
+                   LIBUCONTEXT_ARCH=s390x
+                   ;;
+                 x86_64)
+                   LIBUCONTEXT_ARCH=x86_64
+                   ;;
+                 *)
+                   as_fn_error $? "getcontext() is not available in libc, and $host_cpu is not supported by libucontext" "$LINENO" 5
+                   ;;
+               esac
+
+fi
+
+ if test "x$ac_cv_func_getcontext" = xyes; then
+  HAVE_GETCONTEXT_TRUE=
+  HAVE_GETCONTEXT_FALSE='#'
+else
+  HAVE_GETCONTEXT_TRUE='#'
+  HAVE_GETCONTEXT_FALSE=
+fi
+
+
 # Check whether --enable-processor was given.
 if test "${enable_processor+set}" = set; then :
   enableval=$enable_processor; case "${enableval}" in
@@ -7870,6 +7912,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${X86_HOST_TRUE}" && test -z "${X86_HOST_FALSE}"; then
   as_fn_error $? "conditional \"X86_HOST\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${HAVE_GETCONTEXT_TRUE}" && test -z "${HAVE_GETCONTEXT_FALSE}"; then
+  as_fn_error $? "conditional \"HAVE_GETCONTEXT\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${DISABLE_PROCESSOR_TRUE}" && test -z "${DISABLE_PROCESSOR_FALSE}"; then

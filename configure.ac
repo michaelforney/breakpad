@@ -129,6 +129,33 @@ case $host_cpu in
 esac
 AM_CONDITIONAL(X86_HOST, test x$X86_HOST = xtrue)
 
+AC_CHECK_FUNC([getcontext], [],
+              [case $host_cpu in
+                 arm*)
+                   LIBUCONTEXT_ARCH=arm
+                   ;;
+                 i?86)
+                   LIBUCONTEXT_ARCH=x86
+                   ;;
+                 powerpc64*|ppc64*)
+                   LIBUCONTEXT_ARCH=ppc64
+                   ;;
+                 powerpc*|ppc*)
+                   LIBUCONTEXT_ARCH=ppc
+                   ;;
+                 s390x)
+                   LIBUCONTEXT_ARCH=s390x
+                   ;;
+                 x86_64)
+                   LIBUCONTEXT_ARCH=x86_64
+                   ;;
+                 *)
+                   AC_MSG_ERROR([getcontext() is not available in libc, and $host_cpu is not supported by libucontext])
+                   ;;
+               esac
+               AC_SUBST([LIBUCONTEXT_ARCH])])
+AM_CONDITIONAL([HAVE_GETCONTEXT], [test "x$ac_cv_func_getcontext" = xyes])
+
 AC_ARG_ENABLE(processor,
               AS_HELP_STRING([--disable-processor],
                              [Don't build processor library]

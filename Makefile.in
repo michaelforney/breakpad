@@ -144,26 +144,27 @@ EXTRA_PROGRAMS = $(am__EXEEXT_1)
 @ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_9 = \
 @ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@	src/common/android/breakpad_getcontext.S
 
-@DISABLE_PROCESSOR_FALSE@am__append_10 = \
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@am__append_10 = src/third_party/libucontext/libucontext.a
+@DISABLE_PROCESSOR_FALSE@am__append_11 = \
 @DISABLE_PROCESSOR_FALSE@	src/processor/microdump_stackwalk \
 @DISABLE_PROCESSOR_FALSE@	src/processor/minidump_dump \
 @DISABLE_PROCESSOR_FALSE@	src/processor/minidump_stackwalk
 
-@LINUX_HOST_TRUE@am__append_11 = src/client/linux/linux_dumper_unittest_helper \
-@LINUX_HOST_TRUE@	src/client/linux/linux_client_unittest_shlib
 @LINUX_HOST_TRUE@am__append_12 = src/client/linux/linux_dumper_unittest_helper \
 @LINUX_HOST_TRUE@	src/client/linux/linux_client_unittest_shlib
-@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@am__append_13 = \
+@LINUX_HOST_TRUE@am__append_13 = src/client/linux/linux_dumper_unittest_helper \
+@LINUX_HOST_TRUE@	src/client/linux/linux_client_unittest_shlib
+@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@am__append_14 = \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@	src/tools/linux/core2md/core2md \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@	src/tools/linux/dump_syms/dump_syms \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@	src/tools/linux/md2core/minidump-2-core \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@	src/tools/linux/symupload/minidump_upload \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@	src/tools/linux/symupload/sym_upload
 
-@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@@X86_HOST_TRUE@am__append_14 = \
+@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@@X86_HOST_TRUE@am__append_15 = \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@@X86_HOST_TRUE@	src/tools/mac/dump_syms/dump_syms_mac
 
-@DISABLE_PROCESSOR_FALSE@am__append_15 = \
+@DISABLE_PROCESSOR_FALSE@am__append_16 = \
 @DISABLE_PROCESSOR_FALSE@	src/common/test_assembler_unittest \
 @DISABLE_PROCESSOR_FALSE@	src/processor/address_map_unittest \
 @DISABLE_PROCESSOR_FALSE@	src/processor/basic_source_line_resolver_unittest \
@@ -195,30 +196,33 @@ EXTRA_PROGRAMS = $(am__EXEEXT_1)
 @DISABLE_PROCESSOR_FALSE@	src/processor/stackwalker_x86_unittest \
 @DISABLE_PROCESSOR_FALSE@	src/processor/synth_minidump_unittest
 
-@LINUX_HOST_TRUE@am__append_16 = \
+@LINUX_HOST_TRUE@am__append_17 = \
 @LINUX_HOST_TRUE@	src/client/linux/linux_client_unittest \
 @LINUX_HOST_TRUE@	src/common/linux/google_crashdump_uploader_test
 
-@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@am__append_17 = \
+@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@am__append_18 = \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@	src/common/dumper_unittest \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@	src/tools/linux/md2core/minidump_2_core_unittest
 
-@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@@X86_HOST_TRUE@am__append_18 = \
+@DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@@X86_HOST_TRUE@am__append_19 = \
 @DISABLE_TOOLS_FALSE@@LINUX_HOST_TRUE@@X86_HOST_TRUE@	src/common/mac/macho_reader_unittest
 
-@DISABLE_PROCESSOR_FALSE@@SELFTEST_TRUE@am__append_19 = \
+@DISABLE_PROCESSOR_FALSE@@SELFTEST_TRUE@am__append_20 = \
 @DISABLE_PROCESSOR_FALSE@@SELFTEST_TRUE@	src/processor/stackwalker_selftest
 
-@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_20 = \
+@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_21 = \
 @ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@	src/common/android/breakpad_getcontext.S
 
-@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_21 = \
+@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_22 = \
 @ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@	src/common/android/breakpad_getcontext_unittest.cc
 
-@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_22 = \
+@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_23 = \
 @ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@	-llog -lm
 
-@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_23 = \
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@am__append_24 = \
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@	src/third_party/libucontext/libucontext.a
+
+@ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@am__append_25 = \
 @ANDROID_HOST_TRUE@@LINUX_HOST_TRUE@        -llog
 
 noinst_PROGRAMS =
@@ -288,7 +292,7 @@ am__v_AR_ = $(am__v_AR_@AM_DEFAULT_V@)
 am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 src_client_linux_libbreakpad_client_a_AR = $(AR) $(ARFLAGS)
-src_client_linux_libbreakpad_client_a_LIBADD =
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@src_client_linux_libbreakpad_client_a_DEPENDENCIES = src/third_party/libucontext/libucontext.a
 am__src_client_linux_libbreakpad_client_a_SOURCES_DIST =  \
 	src/client/linux/crash_generation/crash_generation_client.cc \
 	src/client/linux/crash_generation/crash_generation_server.cc \
@@ -550,6 +554,12 @@ am__src_third_party_libdisasm_libdisasm_a_SOURCES_DIST =  \
 @DISABLE_PROCESSOR_FALSE@	src/third_party/libdisasm/x86_operand_list.$(OBJEXT)
 src_third_party_libdisasm_libdisasm_a_OBJECTS =  \
 	$(am_src_third_party_libdisasm_libdisasm_a_OBJECTS)
+src_third_party_libucontext_libucontext_a_AR = $(AR) $(ARFLAGS)
+src_third_party_libucontext_libucontext_a_LIBADD =
+am__src_third_party_libucontext_libucontext_a_SOURCES_DIST = src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/getcontext.S
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@am_src_third_party_libucontext_libucontext_a_OBJECTS = src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/getcontext.$(OBJEXT)
+src_third_party_libucontext_libucontext_a_OBJECTS =  \
+	$(am_src_third_party_libucontext_libucontext_a_OBJECTS)
 @LINUX_HOST_TRUE@am__EXEEXT_1 = src/client/linux/linux_dumper_unittest_helper$(EXEEXT) \
 @LINUX_HOST_TRUE@	src/client/linux/linux_client_unittest_shlib$(EXEEXT)
 @DISABLE_PROCESSOR_FALSE@am__EXEEXT_2 = src/processor/microdump_stackwalk$(EXEEXT) \
@@ -1615,6 +1625,7 @@ SOURCES = $(src_client_linux_libbreakpad_client_a_SOURCES) \
 	$(src_libbreakpad_a_SOURCES) \
 	$(src_testing_libtesting_a_SOURCES) \
 	$(src_third_party_libdisasm_libdisasm_a_SOURCES) \
+	$(src_third_party_libucontext_libucontext_a_SOURCES) \
 	$(src_client_linux_linux_client_unittest_SOURCES) \
 	$(src_client_linux_linux_client_unittest_shlib_SOURCES) \
 	$(src_client_linux_linux_dumper_unittest_helper_SOURCES) \
@@ -1667,6 +1678,7 @@ DIST_SOURCES =  \
 	$(am__src_libbreakpad_a_SOURCES_DIST) \
 	$(am__src_testing_libtesting_a_SOURCES_DIST) \
 	$(am__src_third_party_libdisasm_libdisasm_a_SOURCES_DIST) \
+	$(am__src_third_party_libucontext_libucontext_a_SOURCES_DIST) \
 	$(src_client_linux_linux_client_unittest_SOURCES) \
 	$(am__src_client_linux_linux_client_unittest_shlib_SOURCES_DIST) \
 	$(am__src_client_linux_linux_dumper_unittest_helper_SOURCES_DIST) \
@@ -2002,6 +2014,7 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
+LIBUCONTEXT_ARCH = @LIBUCONTEXT_ARCH@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -2132,9 +2145,9 @@ pkgconfig_DATA = $(am__append_5) $(am__append_8)
 @SYSTEM_TEST_LIBS_FALSE@TEST_DEPS = $(TEST_LIBS)
 @SYSTEM_TEST_LIBS_TRUE@TEST_DEPS = 
 check_LIBRARIES = src/testing/libtesting.a
-noinst_LIBRARIES = $(am__append_6)
+noinst_LIBRARIES = $(am__append_6) $(am__append_10)
 lib_LIBRARIES = $(am__append_4) $(am__append_7)
-CLEANFILES = $(am__append_12)
+CLEANFILES = $(am__append_13)
 @SYSTEM_TEST_LIBS_FALSE@src_testing_libtesting_a_SOURCES = \
 @SYSTEM_TEST_LIBS_FALSE@	src/breakpad_googletest_includes.h \
 @SYSTEM_TEST_LIBS_FALSE@	src/testing/googletest/src/gtest-all.cc \
@@ -2179,6 +2192,12 @@ CLEANFILES = $(am__append_12)
 @LINUX_HOST_TRUE@	src/common/linux/memory_mapped_file.cc \
 @LINUX_HOST_TRUE@	src/common/linux/safe_readlink.cc \
 @LINUX_HOST_TRUE@	$(am__append_9)
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@src_third_party_libucontext_libucontext_a_SOURCES = \
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@	src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/getcontext.S
+
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@src_client_linux_libbreakpad_client_a_LIBADD = \
+@ANDROID_HOST_FALSE@@HAVE_GETCONTEXT_FALSE@@LINUX_HOST_TRUE@	src/third_party/libucontext/libucontext.a
+
 @DISABLE_PROCESSOR_FALSE@src_libbreakpad_a_SOURCES = \
 @DISABLE_PROCESSOR_FALSE@	src/google_breakpad/common/breakpad_types.h \
 @DISABLE_PROCESSOR_FALSE@	src/google_breakpad/common/minidump_format.h \
@@ -2379,17 +2398,16 @@ TESTS = $(check_PROGRAMS) $(check_SCRIPTS)
 @LINUX_HOST_TRUE@	src/processor/minidump.cc \
 @LINUX_HOST_TRUE@	src/processor/pathname_stripper.cc \
 @LINUX_HOST_TRUE@	src/processor/proc_maps_linux.cc \
-@LINUX_HOST_TRUE@	$(am__append_20) \
+@LINUX_HOST_TRUE@	$(am__append_21) \
 @LINUX_HOST_TRUE@	src/client/linux/microdump_writer/microdump_writer_unittest.cc \
-@LINUX_HOST_TRUE@	$(am__append_21)
+@LINUX_HOST_TRUE@	$(am__append_22)
 @LINUX_HOST_TRUE@src_client_linux_linux_client_unittest_shlib_CPPFLAGS = \
 @LINUX_HOST_TRUE@	$(AM_CPPFLAGS) $(TEST_CFLAGS)
 
 @LINUX_HOST_TRUE@src_client_linux_linux_client_unittest_shlib_LDFLAGS =  \
 @LINUX_HOST_TRUE@	-shared -Wl,-h,linux_client_unittest_shlib \
-@LINUX_HOST_TRUE@	$(am__append_22)
-@LINUX_HOST_TRUE@src_client_linux_linux_client_unittest_shlib_LDADD = \
-@LINUX_HOST_TRUE@	src/client/linux/crash_generation/crash_generation_client.o \
+@LINUX_HOST_TRUE@	$(am__append_23)
+@LINUX_HOST_TRUE@src_client_linux_linux_client_unittest_shlib_LDADD = src/client/linux/crash_generation/crash_generation_client.o \
 @LINUX_HOST_TRUE@	src/client/linux/dump_writer_common/thread_info.o \
 @LINUX_HOST_TRUE@	src/client/linux/dump_writer_common/ucontext_reader.o \
 @LINUX_HOST_TRUE@	src/client/linux/handler/exception_handler.o \
@@ -2410,7 +2428,8 @@ TESTS = $(check_PROGRAMS) $(check_SCRIPTS)
 @LINUX_HOST_TRUE@	src/common/linux/safe_readlink.o \
 @LINUX_HOST_TRUE@	src/common/string_conversion.o \
 @LINUX_HOST_TRUE@	$(TEST_LIBS) \
-@LINUX_HOST_TRUE@	$(PTHREAD_CFLAGS) $(PTHREAD_LIBS)
+@LINUX_HOST_TRUE@	$(PTHREAD_CFLAGS) $(PTHREAD_LIBS) \
+@LINUX_HOST_TRUE@	$(am__append_24)
 
 @LINUX_HOST_TRUE@src_client_linux_linux_client_unittest_shlib_DEPENDENCIES = \
 @LINUX_HOST_TRUE@	src/client/linux/linux_dumper_unittest_helper \
@@ -2423,7 +2442,7 @@ TESTS = $(check_PROGRAMS) $(check_SCRIPTS)
 @LINUX_HOST_TRUE@src_client_linux_linux_client_unittest_LDFLAGS =  \
 @LINUX_HOST_TRUE@	-Wl,-rpath,'$$ORIGIN' \
 @LINUX_HOST_TRUE@	-Wl,--build-id=0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f \
-@LINUX_HOST_TRUE@	$(am__append_23)
+@LINUX_HOST_TRUE@	$(am__append_25)
 @LINUX_HOST_TRUE@src_client_linux_linux_client_unittest_LDADD = \
 @LINUX_HOST_TRUE@	src/client/linux/linux_client_unittest_shlib \
 @LINUX_HOST_TRUE@	$(TEST_LIBS)
@@ -3922,6 +3941,22 @@ src/third_party/libdisasm/libdisasm.a: $(src_third_party_libdisasm_libdisasm_a_O
 	$(AM_V_at)-rm -f src/third_party/libdisasm/libdisasm.a
 	$(AM_V_AR)$(src_third_party_libdisasm_libdisasm_a_AR) src/third_party/libdisasm/libdisasm.a $(src_third_party_libdisasm_libdisasm_a_OBJECTS) $(src_third_party_libdisasm_libdisasm_a_LIBADD)
 	$(AM_V_at)$(RANLIB) src/third_party/libdisasm/libdisasm.a
+src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(am__dirstamp):
+	@$(MKDIR_P) src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@
+	@: > src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(am__dirstamp)
+src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR)
+	@: > src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR)/$(am__dirstamp)
+src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/getcontext.$(OBJEXT): src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(am__dirstamp) \
+	src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR)/$(am__dirstamp)
+src/third_party/libucontext/$(am__dirstamp):
+	@$(MKDIR_P) src/third_party/libucontext
+	@: > src/third_party/libucontext/$(am__dirstamp)
+
+src/third_party/libucontext/libucontext.a: $(src_third_party_libucontext_libucontext_a_OBJECTS) $(src_third_party_libucontext_libucontext_a_DEPENDENCIES) $(EXTRA_src_third_party_libucontext_libucontext_a_DEPENDENCIES) src/third_party/libucontext/$(am__dirstamp)
+	$(AM_V_at)-rm -f src/third_party/libucontext/libucontext.a
+	$(AM_V_AR)$(src_third_party_libucontext_libucontext_a_AR) src/third_party/libucontext/libucontext.a $(src_third_party_libucontext_libucontext_a_OBJECTS) $(src_third_party_libucontext_libucontext_a_LIBADD)
+	$(AM_V_at)$(RANLIB) src/third_party/libucontext/libucontext.a
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
@@ -4846,6 +4881,7 @@ mostlyclean-compile:
 	-rm -f src/testing/googlemock/src/*.$(OBJEXT)
 	-rm -f src/testing/googletest/src/*.$(OBJEXT)
 	-rm -f src/third_party/libdisasm/*.$(OBJEXT)
+	-rm -f src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/*.$(OBJEXT)
 	-rm -f src/tools/linux/core2md/*.$(OBJEXT)
 	-rm -f src/tools/linux/dump_syms/*.$(OBJEXT)
 	-rm -f src/tools/linux/md2core/*.$(OBJEXT)
@@ -5132,6 +5168,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/third_party/libdisasm/$(DEPDIR)/x86_insn.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/third_party/libdisasm/$(DEPDIR)/x86_misc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/third_party/libdisasm/$(DEPDIR)/x86_operand_list.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR)/getcontext.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/tools/linux/core2md/$(DEPDIR)/core2md.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/tools/linux/dump_syms/$(DEPDIR)/src_tools_linux_dump_syms_dump_syms-dump_syms.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/tools/linux/md2core/$(DEPDIR)/minidump-2-core.Po@am__quote@
@@ -8838,6 +8875,9 @@ distclean-generic:
 	-rm -f src/testing/googletest/src/$(am__dirstamp)
 	-rm -f src/third_party/libdisasm/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/third_party/libdisasm/$(am__dirstamp)
+	-rm -f src/third_party/libucontext/$(am__dirstamp)
+	-rm -f src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(am__dirstamp)
 	-rm -f src/tools/linux/core2md/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/tools/linux/core2md/$(am__dirstamp)
 	-rm -f src/tools/linux/dump_syms/$(DEPDIR)/$(am__dirstamp)
@@ -8860,7 +8900,7 @@ clean-am: clean-binPROGRAMS clean-checkLIBRARIES clean-checkPROGRAMS \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf src/client/$(DEPDIR) src/client/linux/crash_generation/$(DEPDIR) src/client/linux/dump_writer_common/$(DEPDIR) src/client/linux/handler/$(DEPDIR) src/client/linux/log/$(DEPDIR) src/client/linux/microdump_writer/$(DEPDIR) src/client/linux/minidump_writer/$(DEPDIR) src/common/$(DEPDIR) src/common/android/$(DEPDIR) src/common/dwarf/$(DEPDIR) src/common/linux/$(DEPDIR) src/common/linux/tests/$(DEPDIR) src/common/mac/$(DEPDIR) src/common/tests/$(DEPDIR) src/processor/$(DEPDIR) src/testing/googlemock/src/$(DEPDIR) src/testing/googletest/src/$(DEPDIR) src/third_party/libdisasm/$(DEPDIR) src/tools/linux/core2md/$(DEPDIR) src/tools/linux/dump_syms/$(DEPDIR) src/tools/linux/md2core/$(DEPDIR) src/tools/linux/symupload/$(DEPDIR) src/tools/mac/dump_syms/$(DEPDIR)
+	-rm -rf src/client/$(DEPDIR) src/client/linux/crash_generation/$(DEPDIR) src/client/linux/dump_writer_common/$(DEPDIR) src/client/linux/handler/$(DEPDIR) src/client/linux/log/$(DEPDIR) src/client/linux/microdump_writer/$(DEPDIR) src/client/linux/minidump_writer/$(DEPDIR) src/common/$(DEPDIR) src/common/android/$(DEPDIR) src/common/dwarf/$(DEPDIR) src/common/linux/$(DEPDIR) src/common/linux/tests/$(DEPDIR) src/common/mac/$(DEPDIR) src/common/tests/$(DEPDIR) src/processor/$(DEPDIR) src/testing/googlemock/src/$(DEPDIR) src/testing/googletest/src/$(DEPDIR) src/third_party/libdisasm/$(DEPDIR) src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR) src/tools/linux/core2md/$(DEPDIR) src/tools/linux/dump_syms/$(DEPDIR) src/tools/linux/md2core/$(DEPDIR) src/tools/linux/symupload/$(DEPDIR) src/tools/mac/dump_syms/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-tags
@@ -8913,7 +8953,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf src/client/$(DEPDIR) src/client/linux/crash_generation/$(DEPDIR) src/client/linux/dump_writer_common/$(DEPDIR) src/client/linux/handler/$(DEPDIR) src/client/linux/log/$(DEPDIR) src/client/linux/microdump_writer/$(DEPDIR) src/client/linux/minidump_writer/$(DEPDIR) src/common/$(DEPDIR) src/common/android/$(DEPDIR) src/common/dwarf/$(DEPDIR) src/common/linux/$(DEPDIR) src/common/linux/tests/$(DEPDIR) src/common/mac/$(DEPDIR) src/common/tests/$(DEPDIR) src/processor/$(DEPDIR) src/testing/googlemock/src/$(DEPDIR) src/testing/googletest/src/$(DEPDIR) src/third_party/libdisasm/$(DEPDIR) src/tools/linux/core2md/$(DEPDIR) src/tools/linux/dump_syms/$(DEPDIR) src/tools/linux/md2core/$(DEPDIR) src/tools/linux/symupload/$(DEPDIR) src/tools/mac/dump_syms/$(DEPDIR)
+	-rm -rf src/client/$(DEPDIR) src/client/linux/crash_generation/$(DEPDIR) src/client/linux/dump_writer_common/$(DEPDIR) src/client/linux/handler/$(DEPDIR) src/client/linux/log/$(DEPDIR) src/client/linux/microdump_writer/$(DEPDIR) src/client/linux/minidump_writer/$(DEPDIR) src/common/$(DEPDIR) src/common/android/$(DEPDIR) src/common/dwarf/$(DEPDIR) src/common/linux/$(DEPDIR) src/common/linux/tests/$(DEPDIR) src/common/mac/$(DEPDIR) src/common/tests/$(DEPDIR) src/processor/$(DEPDIR) src/testing/googlemock/src/$(DEPDIR) src/testing/googletest/src/$(DEPDIR) src/third_party/libdisasm/$(DEPDIR) src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/$(DEPDIR) src/tools/linux/core2md/$(DEPDIR) src/tools/linux/dump_syms/$(DEPDIR) src/tools/linux/md2core/$(DEPDIR) src/tools/linux/symupload/$(DEPDIR) src/tools/mac/dump_syms/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

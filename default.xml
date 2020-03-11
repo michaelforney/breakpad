@@ -20,6 +20,11 @@
            revision='refs/heads/master'
            remote='chromium' />
 
+  <project path='src/src/third_party/libucontext'
+           name='AdelieLinux/libucontext.git'
+           revision='aaeb73ea701388e55b7640e32509a5f6a57f6350'
+           remote='github' />
+
   <project path='src/src/tools/gyp'
            name='external/gyp/'
            revision='324dd166b7c0b39d513026fa52d6280ac6d56770'

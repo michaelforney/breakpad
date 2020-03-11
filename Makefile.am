@@ -189,6 +189,16 @@ src_client_linux_libbreakpad_client_a_SOURCES = \
 if ANDROID_HOST
 src_client_linux_libbreakpad_client_a_SOURCES += \
 	src/common/android/breakpad_getcontext.S
+else
+if !HAVE_GETCONTEXT
+noinst_LIBRARIES += src/third_party/libucontext/libucontext.a
+
+src_third_party_libucontext_libucontext_a_SOURCES = \
+	src/third_party/libucontext/arch/@LIBUCONTEXT_ARCH@/getcontext.S
+
+src_client_linux_libbreakpad_client_a_LIBADD = \
+	src/third_party/libucontext/libucontext.a
+endif
 endif
 endif LINUX_HOST
 
@@ -539,6 +549,11 @@ src_client_linux_linux_client_unittest_shlib_SOURCES += \
 	src/common/android/breakpad_getcontext_unittest.cc
 src_client_linux_linux_client_unittest_shlib_LDFLAGS += \
 	-llog -lm
+else
+if !HAVE_GETCONTEXT
+src_client_linux_linux_client_unittest_shlib_LDADD += \
+	src/third_party/libucontext/libucontext.a
+endif
 endif
 
 src_client_linux_linux_client_unittest_shlib_DEPENDENCIES = \
