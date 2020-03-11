@@ -93,7 +93,11 @@
 #define  UCONTEXT_SIGMASK_OFFSET   108
 
 #define  UCONTEXT_FPREGS_OFFSET       96
+#if defined(__ANDROID__)
 #define  UCONTEXT_FPREGS_MEM_OFFSET   116
+#else
+#define  UCONTEXT_FPREGS_MEM_OFFSET   236
+#endif
 
 #elif defined(__mips__)
 
@@ -134,7 +138,11 @@
 #define MCONTEXT_GREGS_RSP   160
 #define MCONTEXT_GREGS_RIP   168
 #define MCONTEXT_FPREGS_PTR  224
+#if defined(__ANDROID__)
 #define MCONTEXT_FPREGS_MEM  304
+#else
+#define MCONTEXT_FPREGS_MEM  424
+#endif
 #define FPREGS_OFFSET_MXCSR  24
 
 #else
